@@ -10,7 +10,7 @@ OBJS = \
 
 EXEC_FILE = utf8
 
-$(EXEC_FILE): $(OBJS)
+$(EXEC_FILE): $(OBJS) $(SRC)/main.c
 	$(CC) $(SRC)/main.c $(ODIR)/*.o -I $(HDR) $(CFLAGS) -o $@
 
 $(ODIR)/%.o: $(SRC)/%.c $(HDR)/%.h

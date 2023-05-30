@@ -11,6 +11,7 @@ int main(void) {
     printf("Test encode 0x7F: %d\n", assert_equals(0x7F, utf8_enconde(0x7F)));
 
     // encode 2 bytes
+    printf("Test encode 0xA3: %d\n", assert_equals(0xC2A3, utf8_enconde(0xA3)));
 
     // encode 3 bytes
 
