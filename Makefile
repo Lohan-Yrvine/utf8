@@ -6,7 +6,7 @@ HDR = $(SRC)/headers
 ODIR = obj
 OBJS = \
 	$(ODIR)/assert_equals.o \
-	$(ODIR)/utf8_encoder.o
+	$(ODIR)/utf8_decoder.o
 
 EXEC_FILE = utf8
 
@@ -16,7 +16,7 @@ $(EXEC_FILE): $(OBJS) $(SRC)/main.c
 $(ODIR)/%.o: $(SRC)/%.c $(HDR)/%.h
 	$(CC) -c $< -I $(HDR) $(CFLAGS) -o $@
 
-run:
+run: $(EXEC_FILE)
 	./$(EXEC_FILE)
 
 clean:
