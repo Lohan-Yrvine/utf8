@@ -1,6 +1,7 @@
 #include <stdint.h>
+#include <stdlib.h>
 
-#include "headers/utf8_decoder.h"
+#include "headers/utf8.h"
 
 uint16_t utf8_deconde_two_bytes(uint16_t bytes) {
     uint8_t first_byte = bytes >> 6 | 0xC0;
@@ -29,15 +30,17 @@ uint32_t utf8_decode_four_bytes(uint32_t bytes) {
     return result;
 }
 
-uint32_t utf8_decode(uint32_t bytes) {
-    if (bytes <= 0x00007F) {
-        return bytes;
-    } else if (bytes <= 0x0007FF) {
-        return utf8_deconde_two_bytes(bytes);
-    } else if (bytes <= 0x00FFFF) {
-        return utf8_decode_three_bytes(bytes);
-    } else if (bytes <= 0x10FFFF) {
-        return utf8_decode_four_bytes(bytes);
+uint32_t utf8_decode(char *bytes) {
+    uint32_t hex_value = strtoul(bytes+2, NULL, 16);
+
+    if (hex_value <= 0x00007F) {
+        return hex_value;
+    } else if (hex_value <= 0x0007FF) {
+        return utf8_deconde_two_bytes(hex_value);
+    } else if (hex_value <= 0x00FFFF) {
+        return utf8_decode_three_bytes(hex_value);
+    } else if (hex_value <= 0x10FFFF) {
+        return utf8_decode_four_bytes(hex_value);
     }
 
     return 0xFFFFFFFF;

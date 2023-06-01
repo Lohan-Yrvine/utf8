@@ -3,6 +3,6 @@
 
 #include <stdint.h>
 
-uint32_t utf8_decode(uint32_t bytes);
+uint32_t utf8_decode(char *bytes);
 
 #endif
