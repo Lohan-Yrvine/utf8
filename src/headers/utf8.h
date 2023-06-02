@@ -5,4 +5,6 @@
 
 uint32_t utf8_decode(char *bytes);
 
+char* utf8_encode(uint32_t bytes);
+
 #endif
